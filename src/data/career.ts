@@ -1,22 +1,22 @@
-import type { CareerMilestone, Skill } from '../types'
+import type { CareerMilestone, Skill, FocusArea } from '../types'
 
 export const careerMilestones: CareerMilestone[] = [
   {
     year: 2004,
-    title: 'Erste Schritte',
+    title: 'Einstieg in die Eventbranche',
     description: 'Erste Helfertätigkeiten in der Technikgruppe des Josef Effner Gymnasiums. Selbstständiges Lernen in der Veranstaltungstechnik, hauptsächlich Licht und Ton.',
     type: 'education'
   },
   {
-    year: 2005,
-    title: 'Ehrenamtliche Arbeit',
-    description: 'Erste ehrenamtliche Tätigkeiten als Techniker bei Benefizveranstaltungen und in örtlichen Vereinen. Weiterentwicklung in Video, Rigging sowie als Lichtpult- und Tonpult Operator.',
+    year: 2006,
+    title: 'Vom Helfer zum Techniker',
+    description: 'Ehrenamtliche Tätigkeiten als Techniker bei Benefizveranstaltungen und in örtlichen Vereinen. Weiterentwicklung in die Gewerke Video und Rigging sowie Erfahrungen als Lichtpult- und Tonpult Operator.',
     type: 'work'
   },
   {
     year: 2010,
     title: 'Gründung TD-VT',
-    description: 'Professionalisierung durch Gründung der Firma TD-VT. Fortan Arbeit als freier Techniker und Operator.',
+    description: 'Professionalisierung durch Gründung der Firma "Tobias Daschner - Veranstaltungstechnik". \nFortan Arbeit als freier Techniker und Operator.',
     type: 'milestone'
   },
   {
@@ -85,8 +85,47 @@ export const skills: Skill[] = [
 
 export const personalInfo = {
   name: 'Tobias Daschner',
-  title: 'Technischer Projektleiter Studio / Event',
-  phone: '0174 1524683',
-  email: 'tobi@td-vt.de',
+  title: 'Projektleitung',
+  phone: '+49 174 1524683',
+  email: 'tobias.daschner@td-vt.de',
   portrait: '/portrait.png'
 }
+
+// Aktuelle Schwerpunkte - bewerbungsrelevant und outcome-orientiert
+export const focusAreas: FocusArea[] = [
+  {
+    id: 'projektleitung',
+    title: 'Projektleitung',
+    description: 'Gesamtverantwortung für komplexe TV- und Eventproduktionen – von der Planung bis zur erfolgreichen Umsetzung.',
+    tags: ['Gesamtprojektleitung', 'Technische Planung', 'Kalkulation', 'Kundenbetreuung', 'Teamführung'],
+    icon: 'projektleitung'
+  },
+  {
+    id: 'software',
+    title: 'Software & CAD',
+    description: 'Professionelle Planung und Visualisierung technischer Setups.',
+    tags: ['Vectorworks', 'ConnectCAD', 'Signalfluss-Planung'],
+    icon: 'software'
+  },
+  {
+    id: 'netzwerk',
+    title: 'Netzwerktechnik',
+    description: 'Design, Aufbau und Administration stabiler (Broadcast-) Netzwerke.',
+    tags: ['Cisco', 'HP', 'Luminex', 'Unifi'],
+    icon: 'netzwerk'
+  },
+  {
+    id: 'video',
+    title: 'Video & Medientechnik',
+    description: 'Steuerung von Video-Mischern und Medienservern auf Events und für TV.',
+    tags: ['Ascender', 'Aquilon', 'E2', 'Watchout', 'Pixera'],
+    icon: 'video'
+  },
+  {
+    id: 'licht',
+    title: 'Lichttechnik',
+    description: 'Planung und Umsetzungvon Lichtsystemen',
+    tags: ['Grand MA 1', 'Grand MA 2', 'Grand MA 3'],
+    icon: 'licht'
+  }
+]

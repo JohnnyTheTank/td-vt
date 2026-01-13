@@ -4,9 +4,11 @@ import { projects } from '../data/projects'
 import './Header.css'
 
 function Header() {
-  const projectCount = projects.length
+  const roundToTen = (n: number) => Math.floor(n / 10) * 10
+  
+  const projectCount = roundToTen(projects.length)
   const yearSpan = Math.max(...projects.map(p => p.year)) - Math.min(...projects.map(p => p.year)) + 1
-  const clientCount = new Set(projects.map(p => p.client)).size
+  const clientCount = roundToTen(new Set(projects.map(p => p.client)).size)
   const headerRef = useRef<HTMLElement>(null)
 
   const scrollToContent = () => {
@@ -32,13 +34,7 @@ function Header() {
         scrollToContent()
         setTimeout(() => { isScrolling = false }, 800)
       }
-      // Wenn wir knapp unter dem Header sind und nach oben scrollen
-      else if (scrollY > 0 && scrollY < headerHeight * 1.2 && e.deltaY < 0) {
-        e.preventDefault()
-        isScrolling = true
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-        setTimeout(() => { isScrolling = false }, 800)
-      }
+      // Nach oben: kein Snap - normales Scrollverhalten
     }
 
     window.addEventListener('wheel', handleWheel, { passive: false })
@@ -90,7 +86,7 @@ function Header() {
               <span className="stat-label">Projekte</span>
             </div>
             <div className="stat">
-              <span className="stat-value">{yearSpan}</span>
+              <span className="stat-value">{yearSpan}+</span>
               <span className="stat-label">Jahre Erfahrung</span>
             </div>
             <div className="stat">

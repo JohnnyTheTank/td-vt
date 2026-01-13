@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Timeline from './components/Timeline'
-import Skills from './components/Skills'
+import FocusAreas from './components/FocusAreas'
 import ProjectList from './components/ProjectList'
 import Footer from './components/Footer'
 import LegalPage from './components/LegalPage'
@@ -50,8 +50,8 @@ function App() {
     <div className="app">
       <Header />
       <main>
+        <FocusAreas />
         <Timeline />
-        <Skills />
         <ProjectList />
       </main>
       <Footer onNavigate={navigate} />

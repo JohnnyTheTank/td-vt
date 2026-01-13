@@ -5,15 +5,7 @@ export interface Project {
   month: string
   name: string
   client: string
-  category: ProjectCategory
 }
-
-export type ProjectCategory = 
-  | 'tv'        // TV-Produktionen (BR, ZDF, Sport1, etc.)
-  | 'streaming' // Streaming (Netflix, Paramount+, etc.)
-  | 'corporate' // Firmenevents (BMW, Audi, MAN, etc.)
-  | 'event'     // Gala, Messe, Konzert
-  | 'film'      // Filmproduktionen
 
 export interface CareerMilestone {
   year: number
@@ -34,3 +26,11 @@ export type SkillCategory =
   | 'licht'
   | 'netzwerk'
   | 'software'
+
+export interface FocusArea {
+  id: string
+  title: string
+  description: string
+  tags: string[]
+  icon: 'projektleitung' | 'video' | 'licht' | 'netzwerk' | 'software'
+}

@@ -1,22 +1,4 @@
-import type { Project, ProjectCategory } from '../types'
-
-// Helper to determine category from client/project name
-function getCategory(client: string, project: string): ProjectCategory {
-  const tvClients = ['BR', 'ZDF', 'Sport1', 'RTL2', 'Sat1', 'Eurosport', 'Servus TV', 'ZDF Neo', 'DAZN']
-  const streamingClients = ['Netflix', 'Paramount+', 'HBO', 'Prime Production']
-  const filmKeywords = ['Dreh', 'Filmdreh', 'Film', 'Pilot', 'Staffel']
-  
-  if (streamingClients.some(c => client.includes(c))) return 'streaming'
-  if (tvClients.some(c => client.includes(c) || client === c)) return 'tv'
-  if (filmKeywords.some(k => project.includes(k))) return 'film'
-  if (project.toLowerCase().includes('gala') || 
-      project.toLowerCase().includes('messe') || 
-      project.toLowerCase().includes('konzert') ||
-      project.toLowerCase().includes('award') ||
-      project.toLowerCase().includes('party') ||
-      project.toLowerCase().includes('weihnachtsfeier')) return 'event'
-  return 'corporate'
-}
+import type { Project } from '../types'
 
 // Parse month from German period string
 function parseMonth(period: string): string {
@@ -373,8 +355,7 @@ export const projects: Project[] = rawProjects.map((p, index) => ({
   year: parseYear(p.period),
   month: parseMonth(p.period),
   name: p.name,
-  client: p.client,
-  category: getCategory(p.client, p.name)
+  client: p.client
 })).sort((a, b) => {
   // Sort by year descending, then by month descending
   if (b.year !== a.year) return b.year - a.year
@@ -386,12 +367,3 @@ export const projectYears = [...new Set(projects.map(p => p.year))].sort((a, b) 
 
 // Get unique clients for filtering
 export const projectClients = [...new Set(projects.map(p => p.client))].sort()
-
-// Category labels for display
-export const categoryLabels: Record<ProjectCategory, string> = {
-  tv: 'TV-Produktion',
-  streaming: 'Streaming',
-  corporate: 'Corporate Event',
-  event: 'Gala & Messe',
-  film: 'Film & Dreh'
-}

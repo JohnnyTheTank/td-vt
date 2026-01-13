@@ -78,11 +78,6 @@
   height: 16px;
 }
 
-.filter-group {
-  display: flex;
-  gap: var(--space-sm);
-}
-
 .filter-select {
   padding: var(--space-md) var(--space-lg);
   font-size: 0.95rem;
@@ -139,13 +134,14 @@
 
 .year-projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--space-md);
 }
 
 /* Project Card */
 .project-card {
-  position: relative;
+  display: flex;
+  gap: var(--space-md);
   padding: var(--space-lg);
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -154,34 +150,50 @@
   overflow: hidden;
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--color-accent);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
 .project-card:hover {
   border-color: var(--color-border-light);
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
-.project-card:hover::before {
-  opacity: 1;
+/* Project Logo */
+.project-logo {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Category colors */
-.project-card--tv::before { background: #3b82f6; }
-.project-card--streaming::before { background: #e11d48; }
-.project-card--corporate::before { background: var(--color-accent); }
-.project-card--event::before { background: #8b5cf6; }
-.project-card--film::before { background: #10b981; }
+.project-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+.logo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-secondary) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+/* Project Content */
+.project-content {
+  flex: 1;
+  min-width: 0;
+}
 
 .project-period {
   font-size: 0.75rem;
@@ -199,26 +211,7 @@
 .project-client {
   font-size: 0.9rem;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-sm);
 }
-
-.project-category-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  background: var(--color-bg-tertiary);
-  border-radius: var(--radius-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-
-.project-card--tv .project-category-badge { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
-.project-card--streaming .project-category-badge { color: #e11d48; background: rgba(225, 29, 72, 0.1); }
-.project-card--corporate .project-category-badge { color: var(--color-accent); background: rgba(201, 166, 107, 0.1); }
-.project-card--event .project-category-badge { color: #8b5cf6; background: rgba(139, 92, 246, 0.1); }
-.project-card--film .project-category-badge { color: #10b981; background: rgba(16, 185, 129, 0.1); }
 
 /* No results */
 .no-results {
@@ -247,12 +240,8 @@
     flex-direction: column;
   }
   
-  .filter-group {
-    width: 100%;
-  }
-  
   .filter-select {
-    flex: 1;
+    width: 100%;
   }
   
   .year-projects {
@@ -300,10 +289,5 @@
     white-space: nowrap;
     width: 70px;
     font-size: 6pt;
-  }
-  
-  .project-table td:last-child {
-    width: 60px;
-    font-size: 5.5pt;
   }
 }

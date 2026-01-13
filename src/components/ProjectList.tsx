@@ -1,12 +1,38 @@
 import { useState, useMemo } from 'react'
-import { projects, projectYears, categoryLabels } from '../data/projects'
-import type { ProjectCategory } from '../types'
+import { projects, projectYears } from '../data/projects'
 import './ProjectList.css'
+
+// Convert client name to logo path
+function getLogoPath(client: string): string {
+  const normalized = client
+    .toLowerCase()
+    .replace(/[&+]/g, '-')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+  return `/logos/${normalized}.png`
+}
+
+// Get initials for placeholder
+function getInitials(client: string): string {
+  return client
+    .split(/[\s&]+/)
+    .map(word => word[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+}
 
 function ProjectList() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedYear, setSelectedYear] = useState<number | 'all'>('all')
-  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory | 'all'>('all')
+  const [failedLogos, setFailedLogos] = useState<Set<string>>(new Set())
+
+  const handleLogoError = (client: string) => {
+    setFailedLogos(prev => new Set(prev).add(client))
+  }
 
   const filteredProjects = useMemo(() => {
     return projects.filter(project => {
@@ -15,11 +41,10 @@ function ProjectList() {
         project.client.toLowerCase().includes(searchTerm.toLowerCase())
       
       const matchesYear = selectedYear === 'all' || project.year === selectedYear
-      const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory
       
-      return matchesSearch && matchesYear && matchesCategory
+      return matchesSearch && matchesYear
     })
-  }, [searchTerm, selectedYear, selectedCategory])
+  }, [searchTerm, selectedYear])
 
   const projectsByYear = useMemo(() => {
     const grouped: Record<number, typeof projects> = {}
@@ -65,29 +90,16 @@ function ProjectList() {
           )}
         </div>
         
-        <div className="filter-group">
-          <select
-            className="filter-select"
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value === 'all' ? 'all' : Number(e.target.value))}
-          >
-            <option value="all">Alle Jahre</option>
-            {projectYears.map(year => (
-              <option key={year} value={year}>{year}</option>
-            ))}
-          </select>
-          
-          <select
-            className="filter-select"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value as ProjectCategory | 'all')}
-          >
-            <option value="all">Alle Kategorien</option>
-            {Object.entries(categoryLabels).map(([key, label]) => (
-              <option key={key} value={key}>{label}</option>
-            ))}
-          </select>
-        </div>
+        <select
+          className="filter-select"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value === 'all' ? 'all' : Number(e.target.value))}
+        >
+          <option value="all">Alle Jahre</option>
+          {projectYears.map(year => (
+            <option key={year} value={year}>{year}</option>
+          ))}
+        </select>
       </div>
       
       {/* Results count */}
@@ -102,13 +114,25 @@ function ProjectList() {
             <h3 className="year-heading">{year}</h3>
             <div className="year-projects">
               {yearProjects.map(project => (
-                <div key={project.id} className={`project-card project-card--${project.category}`}>
-                  <div className="project-period">{project.period}</div>
-                  <div className="project-name">{project.name}</div>
-                  <div className="project-client">{project.client}</div>
-                  <span className="project-category-badge">
-                    {categoryLabels[project.category]}
-                  </span>
+                <div key={project.id} className="project-card">
+                  <div className="project-logo">
+                    {failedLogos.has(project.client) ? (
+                      <div className="logo-placeholder">
+                        {getInitials(project.client)}
+                      </div>
+                    ) : (
+                      <img 
+                        src={getLogoPath(project.client)} 
+                        alt={`${project.client} Logo`}
+                        onError={() => handleLogoError(project.client)}
+                      />
+                    )}
+                  </div>
+                  <div className="project-content">
+                    <div className="project-period">{project.period}</div>
+                    <div className="project-name">{project.name}</div>
+                    <div className="project-client">{project.client}</div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -123,7 +147,6 @@ function ProjectList() {
               onClick={() => {
                 setSearchTerm('')
                 setSelectedYear('all')
-                setSelectedCategory('all')
               }}
             >
               Filter zurücksetzen
@@ -141,7 +164,6 @@ function ProjectList() {
               <th>Zeitraum</th>
               <th>Projekt</th>
               <th>Kunde</th>
-              <th>Kategorie</th>
             </tr>
           </thead>
           <tbody>
@@ -150,7 +172,6 @@ function ProjectList() {
                 <td>{project.period}</td>
                 <td>{project.name}</td>
                 <td>{project.client}</td>
-                <td>{categoryLabels[project.category]}</td>
               </tr>
             ))}
           </tbody>
