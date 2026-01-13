@@ -21,56 +21,56 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "APP_NAME=${{ secrets.APP_NAME }}" >> .env
-          echo "APP_PORT=${{ secrets.APP_PORT }}" >> .env
-          echo "SSH_HOST=${{ secrets.SSH_HOST }}" >> .env
-          echo "SSH_USER=${{ secrets.SSH_USER }}" >> .env
+          echo "APP_NAME=${{ vars.APP_NAME }}" >> .env
+          echo "APP_PORT=${{ vars.APP_PORT }}" >> .env
+          echo "SSH_HOST=${{ vars.SSH_HOST }}" >> .env
+          echo "SSH_USER=${{ vars.SSH_USER }}" >> .env
           echo "SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}" >> .env
-          echo "SSH_PATH=${{ secrets.SSH_PATH }}" >> .env
+          echo "SSH_PATH=${{ vars.SSH_PATH }}" >> .env
 
       - name: Create unique deployment directory name
         id: deployment-dir
-        run: echo "deploymentdir=/home/${{ secrets.SSH_USER }}/deployments/${{ secrets.APP_NAME }}/${{ env.deploymentdirname }}" >> $GITHUB_ENV
+        run: echo "deploymentdir=/home/${{ vars.SSH_USER }}/deployments/${{ vars.APP_NAME }}/${{ env.deploymentdirname }}" >> $GITHUB_ENV
 
       - name: Copy checked-out files to server
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          host: ${{ vars.SSH_HOST }}
+          username: ${{ vars.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "*"
-          target: "${{ env.deploymentdir }}"
+          target: "${{ vars.deploymentdir }}"
 
       - name: Run commands on server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          host: ${{ vars.SSH_HOST }}
+          username: ${{ vars.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             rm -rf ~/.cache/*
             cd "${{ env.deploymentdir }}"
             yarn
             yarn build
-            pm2 delete ${{ secrets.APP_NAME }}
-            TARGET_PATH=${{ secrets.SSH_PATH }}
+            pm2 delete ${{ vars.APP_NAME }}
+            TARGET_PATH=${{ vars.SSH_PATH }}
             if [[ -z "${TARGET_PATH}" ]]; then
-              TARGET_PATH="~/${{ secrets.APP_NAME }}"
+              TARGET_PATH="~/${{ vars.APP_NAME }}"
             fi
             ln -sfn ${{ env.deploymentdir }} "${TARGET_PATH}"
             cd "${TARGET_PATH}"
-            pm2 start yarn --time --interpreter bash --name ${{ secrets.APP_NAME }} -- start -p ${{ secrets.APP_PORT }}
+            pm2 start yarn --time --interpreter bash --name ${{ vars.APP_NAME }} -- start -p ${{ vars.APP_PORT }}
             pm2 save
 
       - name: Cleanup old deployments
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          host: ${{ vars.SSH_HOST }}
+          username: ${{ vars.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             shopt -s extglob
-            cd "/home/${{ secrets.SSH_USER }}/deployments/${{ secrets.APP_NAME }}"
+            cd "/home/${{ vars.SSH_USER }}/deployments/${{ vars.APP_NAME }}"
             rm -rf !(${{ env.deploymentdirname }})
 
 
