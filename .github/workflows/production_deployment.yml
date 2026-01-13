@@ -59,7 +59,7 @@ jobs:
             fi
             ln -sfn ${{ env.deploymentdir }} "${TARGET_PATH}"
             cd "${TARGET_PATH}"
-            pm2 start yarn --time --interpreter bash --name ${{ vars.APP_NAME }} -- start -p ${{ vars.APP_PORT }}
+            pm2 start yarn --time --interpreter bash --name ${{ vars.APP_NAME }} -- preview -p ${{ vars.APP_PORT }}
             pm2 save
 
       - name: Cleanup old deployments
