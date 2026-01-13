@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { personalInfo } from '../data/career'
 import { projects } from '../data/projects'
 import './Header.css'
@@ -6,9 +7,46 @@ function Header() {
   const projectCount = projects.length
   const yearSpan = Math.max(...projects.map(p => p.year)) - Math.min(...projects.map(p => p.year)) + 1
   const clientCount = new Set(projects.map(p => p.client)).size
+  const headerRef = useRef<HTMLElement>(null)
+
+  const scrollToContent = () => {
+    const main = document.querySelector('main')
+    if (main) {
+      main.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  useEffect(() => {
+    let isScrolling = false
+
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling) return
+      
+      const scrollY = window.scrollY
+      const headerHeight = headerRef.current?.offsetHeight || window.innerHeight
+      
+      // Nur wenn wir im Header-Bereich sind und nach unten scrollen
+      if (scrollY < headerHeight * 0.5 && e.deltaY > 0) {
+        e.preventDefault()
+        isScrolling = true
+        scrollToContent()
+        setTimeout(() => { isScrolling = false }, 800)
+      }
+      // Wenn wir knapp unter dem Header sind und nach oben scrollen
+      else if (scrollY > 0 && scrollY < headerHeight * 1.2 && e.deltaY < 0) {
+        e.preventDefault()
+        isScrolling = true
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setTimeout(() => { isScrolling = false }, 800)
+      }
+    }
+
+    window.addEventListener('wheel', handleWheel, { passive: false })
+    return () => window.removeEventListener('wheel', handleWheel)
+  }, [])
 
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="header-bg">
         <div className="header-gradient" />
         <div className="header-pattern" />
@@ -63,12 +101,12 @@ function Header() {
         </div>
       </div>
       
-      <div className="scroll-indicator no-print">
+      <button className="scroll-indicator no-print" onClick={scrollToContent}>
         <span>Mehr erfahren</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
-      </div>
+      </button>
     </header>
   )
 }

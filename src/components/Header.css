@@ -186,6 +186,15 @@
   font-size: 0.875rem;
   animation: fadeIn 1s ease 0.5s forwards;
   opacity: 0;
+  cursor: pointer;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.scroll-indicator:hover {
+  color: var(--color-accent);
+  background: rgba(201, 166, 107, 0.1);
 }
 
 .scroll-indicator svg {
