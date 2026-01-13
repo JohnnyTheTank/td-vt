@@ -39,7 +39,7 @@ jobs:
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "*"
-          target: "${{ vars.deploymentdir }}"
+          target: "${{ env.deploymentdir }}"
 
       - name: Run commands on server
         uses: appleboy/ssh-action@master
