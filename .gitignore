@@ -26,3 +26,4 @@ dist-ssr
 # Source data files (not needed in build)
 *.csv
 *.rtf
+.env
