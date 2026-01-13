@@ -12,7 +12,7 @@ function Timeline() {
       <div className="timeline">
         {reversedMilestones.map((milestone, index) => {
           const isLatest = index === 0
-          const yearDisplay = isLatest ? `Von ${milestone.year}` : milestone.year
+          const yearDisplay = isLatest ? `Seit ${milestone.year}` : milestone.year
           
           return (
             <div 
