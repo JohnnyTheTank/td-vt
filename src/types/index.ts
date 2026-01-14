@@ -23,7 +23,6 @@ export interface Skill {
 export type SkillCategory = 
   | 'projektleitung'
   | 'video'
-  | 'licht'
   | 'netzwerk'
   | 'software'
 
@@ -32,5 +31,5 @@ export interface FocusArea {
   title: string
   description: string
   tags: string[]
-  icon: 'projektleitung' | 'video' | 'licht' | 'netzwerk' | 'software'
+  icon: 'projektleitung' | 'video' | 'netzwerk' | 'software'
 }

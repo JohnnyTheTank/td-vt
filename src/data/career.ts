@@ -39,7 +39,7 @@ export const careerMilestones: CareerMilestone[] = [
   },
   {
     year: 2019,
-    title: 'Technischer Projektleiter',
+    title: 'Technischer Projektleiter Studio / Event',
     description: 'Festanstellung als Technischer Projektleiter bei Plazamedia. Beteiligung bei der Entwicklung von Systemen für Augmented Reality und Extended Reality im Zusammenspiel von LED-Wänden und Mehrkamera Livebetrieb.',
     type: 'milestone'
   }
@@ -72,11 +72,6 @@ export const skills: Skill[] = [
     tools: ['Watchout', 'Pixera']
   },
   {
-    name: 'Lichttechnik',
-    category: 'licht',
-    tools: ['Grand MA 1', 'Grand MA 2', 'Grand MA 3']
-  },
-  {
     name: 'AR/XR Systeme',
     category: 'video',
     tools: ['LED-Wände', 'Mehrkamera Livebetrieb', 'Extended Reality']
@@ -97,7 +92,7 @@ export const focusAreas: FocusArea[] = [
     id: 'projektleitung',
     title: 'Projektleitung',
     description: 'Gesamtverantwortung für komplexe TV- und Eventproduktionen – von der Planung bis zur erfolgreichen Umsetzung.',
-    tags: ['Gesamtprojektleitung', 'Technische Planung', 'Kalkulation', 'Kundenbetreuung', 'Teamführung'],
+    tags: ['Gesamtprojektleitung', 'Technische Planung', 'Kalkulation', 'Kundenbetreuung'],
     icon: 'projektleitung'
   },
   {
@@ -121,11 +116,4 @@ export const focusAreas: FocusArea[] = [
     tags: ['Ascender', 'Aquilon', 'E2', 'Watchout', 'Pixera'],
     icon: 'video'
   },
-  {
-    id: 'licht',
-    title: 'Lichttechnik',
-    description: 'Planung und Umsetzungvon Lichtsystemen',
-    tags: ['Grand MA 1', 'Grand MA 2', 'Grand MA 3'],
-    icon: 'licht'
-  }
 ]
