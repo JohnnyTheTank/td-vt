@@ -60,7 +60,7 @@ function App() {
     return (
       <div className="app app--landing">
         <Header 
-          title="Veranstaltungstechnik" 
+          logo="/logo.png"
           showScrollButton={false} 
           isLanding 
           email="info@td-vt.de"

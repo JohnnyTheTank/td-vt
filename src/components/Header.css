@@ -39,6 +39,10 @@
   justify-content: center;
 }
 
+.header--landing .stat-value {
+  color: var(--color-text-primary);
+}
+
 .header-bg {
   position: absolute;
   inset: 0;
@@ -142,6 +146,14 @@
   color: var(--color-accent);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* Logo (Alternative zu Name + Title) */
+.header-logo {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  filter: invert(1);
 }
 
 /* Contact Links */

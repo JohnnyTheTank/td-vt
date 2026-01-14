@@ -7,6 +7,7 @@ import './Header.css'
 interface HeaderProps {
   name?: string
   title?: string
+  logo?: string
   showScrollButton?: boolean
   isLanding?: boolean
   email?: string
@@ -16,7 +17,8 @@ interface HeaderProps {
 
 function Header({ 
   name = personalInfo.name,
-  title = personalInfo.title, 
+  title = personalInfo.title,
+  logo,
   showScrollButton = true, 
   isLanding = false,
   email = personalInfo.email,
@@ -85,8 +87,14 @@ function Header({
           )}
           
           <div className="header-text">
-            <h1 className="name">{name}</h1>
-            <p className="title">{title}</p>
+            {logo ? (
+              <img src={logo} alt="TD-VT Logo" className="header-logo" />
+            ) : (
+              <>
+                <h1 className="name">{name}</h1>
+                <p className="title">{title}</p>
+              </>
+            )}
             
             <div className="contact-links">
               <a href={`tel:${phone}`} className="contact-link">
