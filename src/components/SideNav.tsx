@@ -51,6 +51,12 @@ function SideNav() {
       if (scrollY < headerHeight) {
         setActiveSection('home')
       }
+      
+      // Set kontakt as active when at bottom of page
+      const isAtBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 50
+      if (isAtBottom) {
+        setActiveSection('kontakt')
+      }
     }
 
     handleScroll()
