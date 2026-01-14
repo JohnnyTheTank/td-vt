@@ -5,6 +5,7 @@ import FocusAreas from './components/FocusAreas'
 import ProjectList from './components/ProjectList'
 import Footer from './components/Footer'
 import LegalPage from './components/LegalPage'
+import SideNav from './components/SideNav'
 
 type Page = 'home' | 'datenschutz' | 'impressum'
 
@@ -55,6 +56,7 @@ function App() {
         <ProjectList />
       </main>
       <Footer onNavigate={navigate} />
+      <SideNav />
     </div>
   )
 }

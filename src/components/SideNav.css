@@ -1,0 +1,116 @@
+/* ============================================
+   Side Navigation - Large Screens Only
+   ============================================ */
+
+.side-nav {
+  position: fixed;
+  right: var(--space-xl);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  
+  /* Only show on large screens */
+  display: none;
+}
+
+@media (min-width: 1400px) {
+  .side-nav {
+    display: block;
+  }
+}
+
+.side-nav--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.side-nav-track {
+  position: absolute;
+  left: 6px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-border);
+  border-radius: 1px;
+}
+
+.side-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: relative;
+}
+
+.side-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xs) 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.side-nav-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-bg-secondary);
+  border: 2px solid var(--color-border-light);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.side-nav-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  opacity: 0.35;
+  transition: all var(--transition-fast);
+}
+
+/* Hover states */
+.side-nav-item:hover .side-nav-dot {
+  border-color: var(--color-accent);
+  background: var(--color-bg-tertiary);
+}
+
+.side-nav-item:hover .side-nav-label {
+  opacity: 1;
+  color: var(--color-text-secondary);
+}
+
+/* Active state */
+.side-nav-item--active .side-nav-dot {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(201, 166, 107, 0.2);
+}
+
+.side-nav-item--active .side-nav-label {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+/* Focus state for accessibility */
+.side-nav-item:focus {
+  outline: none;
+}
+
+.side-nav-item:focus-visible .side-nav-dot {
+  box-shadow: 0 0 0 3px rgba(201, 166, 107, 0.4);
+}
+
+/* Print: hide */
+@media print {
+  .side-nav {
+    display: none !important;
+  }
+}
