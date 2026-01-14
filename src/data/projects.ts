@@ -318,7 +318,7 @@ const rawProjects: Array<{ period: string; name: string; client: string }> = [
   { period: "September 2024", name: "Karlsplatz", client: "BR" },
   { period: "September 2024", name: "100 Jahre Tyczka", client: "planworx" },
   { period: "Oktober 2024", name: "50 Jahre Tornado First Flight", client: "Black Cherries" },
-  { period: "November 2024", name: "BMW M Event", client: "Unknown Inc" },
+  { period: "November 2024", name: "BMW M Event", client: "BMW" },
   { period: "November 2024", name: "Aufgegabelt", client: "BR" },
   { period: "Dezember 2024", name: "Weihnachtsfeier", client: "Alix & Partner" },
   { period: "Dezember 2024", name: "Weihnachtsfeier", client: "Roland Berger" },
