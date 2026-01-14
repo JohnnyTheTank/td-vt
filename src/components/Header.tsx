@@ -5,12 +5,24 @@ import LogoMarquee from './LogoMarquee'
 import './Header.css'
 
 interface HeaderProps {
+  name?: string
   title?: string
   showScrollButton?: boolean
   isLanding?: boolean
+  email?: string
+  phone?: string
+  showPortrait?: boolean
 }
 
-function Header({ title = personalInfo.title, showScrollButton = true, isLanding = false }: HeaderProps) {
+function Header({ 
+  name = personalInfo.name,
+  title = personalInfo.title, 
+  showScrollButton = true, 
+  isLanding = false,
+  email = personalInfo.email,
+  phone = personalInfo.phone,
+  showPortrait = true
+}: HeaderProps) {
   const roundToTen = (n: number) => Math.floor(n / 10) * 10
   
   const projectCount = roundToTen(projects.length)
@@ -59,34 +71,36 @@ function Header({ title = personalInfo.title, showScrollButton = true, isLanding
       
       <div className="header-main">
         <div className="header-content">
-          <div className="portrait-container">
-            <div className="portrait-frame">
-              <img 
-                src={personalInfo.portrait} 
-                alt={personalInfo.name}
-                className="portrait"
-              />
+          {showPortrait && (
+            <div className="portrait-container">
+              <div className="portrait-frame">
+                <img 
+                  src={personalInfo.portrait} 
+                  alt={personalInfo.name}
+                  className="portrait"
+                />
+              </div>
+              <div className="portrait-accent" />
             </div>
-            <div className="portrait-accent" />
-          </div>
+          )}
           
           <div className="header-text">
-            <h1 className="name">{personalInfo.name}</h1>
+            <h1 className="name">{name}</h1>
             <p className="title">{title}</p>
             
             <div className="contact-links">
-              <a href={`tel:${personalInfo.phone}`} className="contact-link">
+              <a href={`tel:${phone}`} className="contact-link">
                 <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
-                <span>{personalInfo.phone}</span>
+                <span>{phone}</span>
               </a>
-              <a href={`mailto:${personalInfo.email}`} className="contact-link">
+              <a href={`mailto:${email}`} className="contact-link">
                 <svg className="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                   <polyline points="22,6 12,13 2,6"/>
                 </svg>
-                <span>{personalInfo.email}</span>
+                <span>{email}</span>
               </a>
             </div>
             

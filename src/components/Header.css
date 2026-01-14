@@ -21,6 +21,24 @@
   padding-bottom: var(--space-3xl);
 }
 
+/* Landing Page: Ohne Portrait alles zentrieren */
+.header--landing .header-content {
+  flex-direction: column;
+  text-align: center;
+}
+
+.header--landing .header-text {
+  align-items: center;
+}
+
+.header--landing .contact-links {
+  justify-content: center;
+}
+
+.header--landing .stats {
+  justify-content: center;
+}
+
 .header-bg {
   position: absolute;
   inset: 0;

@@ -46,7 +46,11 @@ function App() {
     return (
       <div className="app">
         <LegalPage type={currentPage} onBack={() => navigate('home')} />
-        <Footer onNavigate={navigate} />
+        <Footer 
+          onNavigate={navigate}
+          email={!isCvPage ? "info@td-vt.de" : undefined}
+          phone={!isCvPage ? "+49 8131 310415" : undefined}
+        />
       </div>
     )
   }
@@ -55,8 +59,19 @@ function App() {
   if (!isCvPage) {
     return (
       <div className="app app--landing">
-        <Header title="Veranstaltungstechnik" showScrollButton={false} isLanding />
-        <Footer onNavigate={navigate} />
+        <Header 
+          title="Veranstaltungstechnik" 
+          showScrollButton={false} 
+          isLanding 
+          email="info@td-vt.de"
+          phone="+49 8131 310415"
+          showPortrait={false}
+        />
+        <Footer 
+          onNavigate={navigate} 
+          email="info@td-vt.de"
+          phone="+49 8131 310415"
+        />
       </div>
     )
   }
