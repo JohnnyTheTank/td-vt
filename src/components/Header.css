@@ -13,6 +13,12 @@
   overflow: hidden;
 }
 
+/* Landing Page: Header füllt verfügbaren Platz, aber nicht mehr als nötig */
+.header--landing {
+  min-height: 0;
+  flex: 1;
+}
+
 .header-bg {
   position: absolute;
   inset: 0;

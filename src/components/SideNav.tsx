@@ -7,11 +7,10 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { id: 'home', label: 'Home' },
+  { id: 'home', label: 'Start' },
   { id: 'schwerpunkte', label: 'Schwerpunkte' },
   { id: 'werdegang', label: 'Werdegang' },
   { id: 'projekte', label: 'Projekte' },
-  { id: 'kontakt', label: 'Kontakt' },
 ]
 
 function SideNav() {
@@ -52,10 +51,10 @@ function SideNav() {
         setActiveSection('home')
       }
       
-      // Set kontakt as active when at bottom of page
+      // Set projekte as active when at bottom of page
       const isAtBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 50
       if (isAtBottom) {
-        setActiveSection('kontakt')
+        setActiveSection('projekte')
       }
     }
 

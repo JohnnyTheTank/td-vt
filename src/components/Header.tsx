@@ -3,7 +3,13 @@ import { personalInfo } from '../data/career'
 import { projects } from '../data/projects'
 import './Header.css'
 
-function Header() {
+interface HeaderProps {
+  title?: string
+  showScrollButton?: boolean
+  isLanding?: boolean
+}
+
+function Header({ title = personalInfo.title, showScrollButton = true, isLanding = false }: HeaderProps) {
   const roundToTen = (n: number) => Math.floor(n / 10) * 10
   
   const projectCount = roundToTen(projects.length)
@@ -19,6 +25,8 @@ function Header() {
   }
 
   useEffect(() => {
+    if (!showScrollButton) return
+
     let isScrolling = false
 
     const handleWheel = (e: WheelEvent) => {
@@ -39,10 +47,10 @@ function Header() {
 
     window.addEventListener('wheel', handleWheel, { passive: false })
     return () => window.removeEventListener('wheel', handleWheel)
-  }, [])
+  }, [showScrollButton])
 
   return (
-    <header className="header" ref={headerRef}>
+    <header className={`header${isLanding ? ' header--landing' : ''}`} ref={headerRef}>
       <div className="header-bg">
         <div className="header-gradient" />
         <div className="header-pattern" />
@@ -62,7 +70,7 @@ function Header() {
         
         <div className="header-text">
           <h1 className="name">{personalInfo.name}</h1>
-          <p className="title">{personalInfo.title}</p>
+          <p className="title">{title}</p>
           
           <div className="contact-links">
             <a href={`tel:${personalInfo.phone}`} className="contact-link">
@@ -97,12 +105,14 @@ function Header() {
         </div>
       </div>
       
-      <button className="scroll-indicator no-print" onClick={scrollToContent}>
-        <span>Mehr erfahren</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </button>
+      {showScrollButton && (
+        <button className="scroll-indicator no-print" onClick={scrollToContent}>
+          <span>Mehr erfahren</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+      )}
     </header>
   )
 }

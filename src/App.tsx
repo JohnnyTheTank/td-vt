@@ -11,6 +11,10 @@ type Page = 'home' | 'datenschutz' | 'impressum'
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home')
+  
+  // Check if we're on the CV page based on pathname
+  const pathname = window.location.pathname
+  const isCvPage = pathname.startsWith('/cv')
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -47,6 +51,17 @@ function App() {
     )
   }
 
+  // Landing Page: nur Header + Footer
+  if (!isCvPage) {
+    return (
+      <div className="app app--landing">
+        <Header title="Veranstaltungstechnik" showScrollButton={false} isLanding />
+        <Footer onNavigate={navigate} />
+      </div>
+    )
+  }
+
+  // CV Page: voller Inhalt
   return (
     <div className="app">
       <Header />

@@ -141,6 +141,18 @@ input, select {
   min-height: 100vh;
 }
 
+/* Landing Page Layout - Header + Footer auf einen Blick */
+.app--landing {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app--landing .footer {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
 main {
   max-width: var(--max-width);
   margin: 0 auto;
