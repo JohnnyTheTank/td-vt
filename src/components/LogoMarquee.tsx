@@ -69,7 +69,7 @@ function LogoMarquee() {
         return {
           client,
           filename,
-          path: `/logos/${filename}.png`,
+          path: `/logos/${filename}.webp`,
           eventCount: clientProjects.length,
           yearMin: Math.min(...years),
           yearMax: Math.max(...years)

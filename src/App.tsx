@@ -60,7 +60,7 @@ function App() {
     return (
       <div className="app app--landing">
         <Header 
-          logo="/logo.png"
+          logo="/logo.webp"
           showScrollButton={false} 
           isLanding 
           email="info@td-vt.de"

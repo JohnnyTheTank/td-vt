@@ -83,7 +83,7 @@ export const personalInfo = {
   title: 'Projektleitung',
   phone: '+49 174 1524683',
   email: 'tobias.daschner@td-vt.de',
-  portrait: '/portrait.png'
+  portrait: '/portrait.webp'
 }
 
 // Aktuelle Schwerpunkte - bewerbungsrelevant und outcome-orientiert

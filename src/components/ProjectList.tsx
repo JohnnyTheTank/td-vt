@@ -11,7 +11,7 @@ function getLogoPath(client: string): string {
     .replace(/[^a-z0-9-]/g, '')
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '')
-  return `/logos/${normalized}.png`
+  return `/logos/${normalized}.webp`
 }
 
 // Get initials for placeholder
