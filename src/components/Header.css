@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   padding: var(--space-2xl);
+  padding-bottom: calc(var(--space-2xl) + 60px);
   overflow: hidden;
 }
 
@@ -45,16 +46,23 @@
   background-size: 50px 50px;
 }
 
-.header-content {
+.header-main {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.header-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-2xl);
   max-width: 800px;
   text-align: center;
-  animation: fadeInUp 0.8s ease forwards;
 }
 
 /* Portrait */
