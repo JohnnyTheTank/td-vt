@@ -17,6 +17,7 @@
 .header--landing {
   min-height: 0;
   flex: 1;
+  padding-bottom: var(--space-3xl);
 }
 
 .header-bg {

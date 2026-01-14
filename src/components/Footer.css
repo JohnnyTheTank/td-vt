@@ -75,6 +75,44 @@
   color: var(--color-text-muted);
 }
 
+/* Mobile: kompakterer Footer */
+@media (max-width: 767px) {
+  .footer {
+    padding: var(--space-md) var(--space-md);
+  }
+  
+  .footer-content {
+    gap: var(--space-xs);
+  }
+  
+  .footer-contact {
+    gap: 0;
+  }
+  
+  .footer-contact-link {
+    font-size: 0.8rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .footer-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .footer-links {
+    gap: var(--space-sm);
+  }
+  
+  .footer-link {
+    font-size: 0.75rem;
+    padding: 0 var(--space-xs);
+  }
+  
+  .footer-copyright {
+    font-size: 0.65rem;
+  }
+}
+
 @media (min-width: 768px) {
   .footer-contact {
     flex-direction: row;
