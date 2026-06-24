@@ -6,6 +6,7 @@ import ProjectList from './components/ProjectList'
 import Footer from './components/Footer'
 import LegalPage from './components/LegalPage'
 import SideNav from './components/SideNav'
+import CvPasswordGate from './components/CvPasswordGate'
 import { assetUrl } from './utils/assetUrl'
 
 type Page = 'home' | 'datenschutz' | 'impressum'
@@ -77,18 +78,20 @@ function App() {
     )
   }
 
-  // CV Page: voller Inhalt
+  // CV Page: voller Inhalt (passwortgeschützt)
   return (
-    <div className="app">
-      <Header />
-      <main>
-        <FocusAreas />
-        <Timeline />
-        <ProjectList />
-      </main>
-      <Footer onNavigate={navigate} />
-      <SideNav />
-    </div>
+    <CvPasswordGate>
+      <div className="app">
+        <Header />
+        <main>
+          <FocusAreas />
+          <Timeline />
+          <ProjectList />
+        </main>
+        <Footer onNavigate={navigate} />
+        <SideNav />
+      </div>
+    </CvPasswordGate>
   )
 }
 
