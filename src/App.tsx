@@ -6,6 +6,7 @@ import ProjectList from './components/ProjectList'
 import Footer from './components/Footer'
 import LegalPage from './components/LegalPage'
 import SideNav from './components/SideNav'
+import { assetUrl } from './utils/assetUrl'
 
 type Page = 'home' | 'datenschutz' | 'impressum'
 
@@ -14,7 +15,7 @@ function App() {
   
   // Check if we're on the CV page based on pathname
   const pathname = window.location.pathname
-  const isCvPage = pathname.startsWith('/cv')
+  const isCvPage = /\/cv(\/|$)/.test(pathname)
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -60,7 +61,7 @@ function App() {
     return (
       <div className="app app--landing">
         <Header 
-          logo="/logo.webp"
+          logo={assetUrl('/logo.webp')}
           showScrollButton={false} 
           isLanding 
           email="info@td-vt.de"

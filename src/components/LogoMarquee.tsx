@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { projects } from '../data/projects'
+import { assetUrl } from '../utils/assetUrl'
 import './LogoMarquee.css'
 
 // List of logos that actually exist in public/logos/
@@ -69,7 +70,7 @@ function LogoMarquee() {
         return {
           client,
           filename,
-          path: `/logos/${filename}.webp`,
+          path: assetUrl(`/logos/${filename}.webp`),
           eventCount: clientProjects.length,
           yearMin: Math.min(...years),
           yearMax: Math.max(...years)

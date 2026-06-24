@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { personalInfo } from '../data/career'
 import { projects } from '../data/projects'
+import { assetUrl } from '../utils/assetUrl'
 import LogoMarquee from './LogoMarquee'
 import './Header.css'
 
@@ -77,7 +78,7 @@ function Header({
             <div className="portrait-container">
               <div className="portrait-frame">
                 <img 
-                  src={personalInfo.portrait} 
+                  src={assetUrl(personalInfo.portrait)} 
                   alt={personalInfo.name}
                   className="portrait"
                 />

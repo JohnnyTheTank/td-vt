@@ -3,10 +3,8 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
 export default defineConfig({
+  base: '/td-vt/',
   plugins: [react()],
-  preview: {
-    allowedHosts: ['td-vt.de'],
-  },
   build: {
     rollupOptions: {
       input: {
