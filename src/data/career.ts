@@ -40,8 +40,14 @@ export const careerMilestones: CareerMilestone[] = [
   {
     year: 2019,
     title: 'Technischer Projektleiter Studio / Event',
-    description: 'Festanstellung als Technischer Projektleiter bei Plazamedia. Beteiligung bei der Entwicklung von Systemen für Augmented Reality und Extended Reality im Zusammenspiel von LED-Wänden und Mehrkamera Livebetrieb.',
+    description: 'Festanstellung als Technischer Projektleiter bei Plazamedia bis Ende März 2026. Beteiligung bei der Entwicklung von Systemen für Augmented Reality und Extended Reality im Zusammenspiel von LED-Wänden und Mehrkamera Livebetrieb.',
     type: 'milestone'
+  },
+  {
+    year: 2026,
+    title: 'Technischer Leiter – BMW Welt',
+    description: 'Seit 1. April 2026 Festanstellung als Technischer Leiter bei der BMW Welt.',
+    type: 'work'
   }
 ]
 
@@ -80,7 +86,7 @@ export const skills: Skill[] = [
 
 export const personalInfo = {
   name: 'Tobias Daschner',
-  title: 'Projektleitung',
+  title: 'Technischer Leiter',
   phone: '+49 174 1524683',
   email: 'tobias.daschner@td-vt.de',
   portrait: '/portrait.webp'
